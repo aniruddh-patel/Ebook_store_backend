@@ -9,7 +9,7 @@ import { config } from 'dotenv'
 import cookieParser from 'cookie-parser';
 
 config({
-    path: "./data/config.env"
+  path: "./data/config.env"
 })
 const app = express();
 
@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:[process.env.FRONTEND_URL],
-    methods:["GET","POST","PUT","DELETE"],
-    credentials:true,
+  origin: [process.env.FRONTEND_URL],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
 
 //connecting mongodb
@@ -32,10 +32,13 @@ app.use('/api/v1/books', bookRouter);
 app.use('/api/v1', quoteRouter);
 app.use('/user', userRouter);
 
+
+
 // home route
 app.get('/', (req, res) => {
-    res.send('<h1>This is backend dashboard</h1>');
+  res.send('<h1>This is backend dashboard</h1>');
 })
+
 app.listen(process.env.PORT || 4000, () => {
-    console.log('Server started')
+  console.log('Server started')
 })
