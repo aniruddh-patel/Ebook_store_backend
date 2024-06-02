@@ -4,6 +4,7 @@ import cors from 'cors'
 import bookRouter from './routes/bookroute.js'
 import quoteRouter from './routes/quoteroute.js'
 import userRouter from './routes/userroute.js'
+import contactRouter from './routes/contactRouter.js'
 import { connectDB } from './data/dbconnection.js';
 import { config } from 'dotenv'
 import cookieParser from 'cookie-parser';
@@ -15,6 +16,7 @@ const app = express();
 
 // using middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
@@ -31,6 +33,7 @@ connectDB();
 app.use('/api/v1/books', bookRouter);
 app.use('/api/v1', quoteRouter);
 app.use('/user', userRouter);
+app.use('/contact', contactRouter)
 
 
 
