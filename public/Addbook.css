@@ -1,0 +1,77 @@
+.admin-main-box {
+    /* height: 900px; */
+    width: 100%;
+    background-color: #faebd7;
+    margin-bottom: 5px;
+    padding: 10px 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.adminform{
+    background-color: rgba(83, 90, 90, 0.593);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 90%;
+    align-items: center;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+.adminform
+label,
+input {
+    display: block;
+    background-color: white;
+
+}
+
+.adminform label {
+    font-weight: bold;
+    height: 25px;
+    width: 90%;
+    background: none;
+    color: white;
+   padding-top:15px ;
+}
+
+.adminform input {
+    height: 40px;
+    width: 90%;
+    outline: none;
+    border-radius: 5px;
+    font-size: medium;
+    padding-left: 10px;
+    text-justify: center;
+    border: 1px solid black;
+}
+.uploadinput{
+    height: 40px;
+    width: 90%;
+    outline: none;
+    border-radius: 5px;
+    font-size: medium;
+    padding-left: 10px;
+    padding-top:15px;
+    text-justify: center;
+}
+.adminform button {
+    padding: 8px 15px;
+    font-size: 18px;
+    border: 1px solid black;
+    color: #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bolder;
+    background-color: #d57b04;
+}
+.adminform textarea{
+    display: block;
+    min-height: 90px;
+    min-width: 90%;
+    /* outline: none; */
+    border-radius: 5px;
+    font-size: large;
+    padding-left: 10px;
+}

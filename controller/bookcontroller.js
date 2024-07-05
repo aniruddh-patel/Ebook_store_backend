@@ -101,9 +101,9 @@ export const uploadBookhandler = async (req, res) => {
 
     // Save book document to MongoDB
     await newBook.save();
-    res.status(201).json({ success: true, message: "Uploaded book Successfully", newBook });
+    res.redirect('/admin?message=Uploaded book successfully!');
   } catch (error) {
     console.error('Error uploading file:', error);
-    res.status(500).json({ success: false, message: 'Error uploading file' });
+    res.redirect('/admin?error=Error uploading file.');
   }
 };

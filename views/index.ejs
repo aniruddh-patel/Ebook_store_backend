@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="Addbook.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body>
+    <div class="admin-main-box">
+        <form class="adminform" id="addBookForm" action="/api/v1/books/new" method="POST" enctype="multipart/form-data">
+            <label for="bookName">Book Name*</label>
+            <input type="text" id="bookName" name="bookName" placeholder="Book Name" required />
+
+            <label for="author">Author Name*</label>
+            <input type="text" id="author" name="author" placeholder="Author Name" required />
+
+            <label for="bookSummary">Book Summary*</label>
+            <textarea id="bookSummary" name="bookSummary" placeholder="Book summary in 100 words" required></textarea>
+
+            <label for="genre">Genre*</label>
+            <input type="text" id="genre" name="genre" placeholder="Genre" required />
+
+            <label for="pdfFile">Upload Book File* (.PDF)</label>
+            <input class="uploadinput" type="file" id="pdfFile" name="pdfFile" required />
+
+            <label for="bookCoverUrl">Upload Book Cover Image* (.PNG, JPEG, JPG)</label>
+            <input class="uploadinput" type="file" id="bookCoverUrl" name="bookCoverUrl" required />
+
+            <label for="publication_date">Published Date (DD-MM-YYYY)*</label>
+            <input type="text" id="publication_date" name="publication_date" placeholder="DD-MM-YYYY" required />
+
+            <label for="likes">Likes*</label>
+            <input type="number" id="likes" name="likes" placeholder="Likes" required />
+
+            <br />
+            <button class="admin-form-button" type="submit">Add Book</button>
+            <p>Note: Kindly wait until success or error message is displayed</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addBookForm').addEventListener('submit', function (e) {
+            const convertToISODate = (dateStr) => {
+                const [day, month, year] = dateStr.split('-');
+                return new Date(`${year}-${month}-${day}T00:00:00Z`).toISOString();
+            };
+
+            const publicationDateInput = document.getElementById('publication_date');
+            publicationDateInput.value = convertToISODate(publicationDateInput.value);
+        });
+
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queryArray = queryString.split('&');
+
+            queryArray.forEach(param => {
+                const [key, value] = param.split('=');
+                params[key] = decodeURIComponent(value);
+            });
+
+            return params;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = getQueryParams();
+
+            if (params.message) {
+                toastr.success(params.message);
+            }
+
+            if (params.error) {
+                toastr.error(params.error);
+            }
+        });
+    </script>
+</body>
+</html>

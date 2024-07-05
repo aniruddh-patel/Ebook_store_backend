@@ -8,6 +8,7 @@ import contactRouter from './routes/contactRouter.js'
 import { connectDB } from './data/dbconnection.js';
 import { config } from 'dotenv'
 import cookieParser from 'cookie-parser';
+import path from 'path';
 // import morgan from 'morgan';
 
 config({
@@ -17,7 +18,9 @@ const app = express();
 
 // using middlewares
 // app.use(morgan('combined')) fot logs
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(path.resolve(),"public")))
+app.set("view engine", "ejs")
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(express.json())
 app.use(cookieParser())
@@ -30,7 +33,6 @@ app.use(cors({
 //connecting mongodb
 connectDB();
 
-
 // using routes
 app.use('/api/v1/books', bookRouter);
 app.use('/api/v1', quoteRouter);
@@ -39,9 +41,10 @@ app.use('/contact', contactRouter)
 
 
 
-// home route
-app.get('/', (req, res) => {
-  res.send('<h1>This is backend dashboard</h1>');
+// home route for book add
+app.get('/admin', (req, res) => {
+  const { message, error } = req.query;
+  res.render("index",{message,error});
 })
 
 app.listen(process.env.PORT || 4000, () => {
