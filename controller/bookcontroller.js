@@ -73,14 +73,14 @@ const uploadFileToS3 = (file, folder) => {
 export const uploadBookhandler = async (req, res) => {
   // console.log(req.files); 
   const { bookName, author, bookSummary, genre, publication_date ,likes} = req.body;
+  
+    const pdfFile = req.files.pdfFile[0];
+    const bookCoverUrl = req.files.bookCoverUrl[0];
 
   // Check if the files are available
   if (!req.files || !req.files.pdfFile || !req.files.bookCoverUrl) {
     return res.status(400).json({ message: 'PDF file and cover image are required.' });
   }
-
-  const pdfFile = req.files.pdfFile[0];
-  const bookCoverUrl = req.files.bookCoverUrl[0];
 
   try {
     // Upload files to S3

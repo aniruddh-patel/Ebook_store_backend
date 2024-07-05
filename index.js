@@ -8,6 +8,7 @@ import contactRouter from './routes/contactRouter.js'
 import { connectDB } from './data/dbconnection.js';
 import { config } from 'dotenv'
 import cookieParser from 'cookie-parser';
+// import morgan from 'morgan';
 
 config({
   path: "./data/config.env"
@@ -15,6 +16,7 @@ config({
 const app = express();
 
 // using middlewares
+// app.use(morgan('combined')) fot logs
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(express.json())
