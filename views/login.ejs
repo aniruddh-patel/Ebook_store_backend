@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="Signin.css"> 
+</head>
+<body>
+    <div class="login-main-box">
+        <div class="login-inner-mainbox1">
+            <div class="login-container">
+                <h2>Login</h2><br>
+                <form id="signinForm" action="/login" method="POST">
+                    <input name="email" type="email" placeholder="Email" id="email" required><br>
+                    <input name="password" type="password" placeholder="Password" id="password" required><br>
+                    <button id="submitBtn" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

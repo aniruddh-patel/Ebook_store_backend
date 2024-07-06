@@ -27,7 +27,7 @@ export const registerhandler = async (req, res) => {
 }
 
 
-export const loginhandler = async (req, res) => {
+export const  loginhandler = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await Users.findOne({ email }).select("+password");
